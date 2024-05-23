@@ -4,4 +4,5 @@ import kongkin.bbu.edu.webapi.models.response.MessageResponse;
 
 public class BaseController {
     protected MessageResponse response;
+
 }

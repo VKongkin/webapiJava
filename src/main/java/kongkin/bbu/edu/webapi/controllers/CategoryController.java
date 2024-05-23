@@ -22,7 +22,10 @@ import java.util.List;
 public class CategoryController extends BaseController{
     private final CategoryService categoryService;
 
-
+    @GetMapping("/test")
+    public String test(){
+        return "ok";
+    }
     @GetMapping("/categories")
     public ResponseEntity<Object> getAll() {
         response = new MessageResponse();

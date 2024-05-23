@@ -1,3 +1,7 @@
-runtime: java17
-instance_class: F1
-entrypoint: java -jar web-api-0.0.1-SNAPSHOT.war
+runtime: java
+env: flex
+runtime_config:
+  jdk: openjdk17
+handler:
+  - url: /.*
+    script: this file is required, but ignored
