@@ -12,4 +12,6 @@ public interface CategoryService {
     void update(Category req) throws AppException;
     void delete(Category req) throws AppException;
     void checkCategoryId(Integer id) throws AppException;
+
+
 }
