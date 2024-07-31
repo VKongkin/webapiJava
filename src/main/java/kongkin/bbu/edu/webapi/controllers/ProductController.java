@@ -1,10 +1,9 @@
 package kongkin.bbu.edu.webapi.controllers;
 
 import kongkin.bbu.edu.webapi.exceptions.AppException;
-import kongkin.bbu.edu.webapi.models.Category;
 import kongkin.bbu.edu.webapi.models.Product;
 import kongkin.bbu.edu.webapi.models.ProductUnit;
-import kongkin.bbu.edu.webapi.models.response.MessageResponse;
+import kongkin.bbu.edu.webapi.models.response.MessageDataResponse;
 import kongkin.bbu.edu.webapi.models.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +25,10 @@ public class ProductController extends BaseController {
 
     @GetMapping("/products")
     public ResponseEntity<Object> getAll() {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             List<Product> list = productService.getAll();
-            response = new MessageResponse();
+            response = new MessageDataResponse();
             response.getDataSuccess(list);
         } catch (AppException e) {
             log.error("Error while get all products", e);
@@ -48,7 +47,7 @@ public class ProductController extends BaseController {
 
     @PostMapping("/products/create")
     public ResponseEntity<Object> create(@RequestBody Product req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception create product req {}", req);
             productService.create(req);
@@ -72,7 +71,7 @@ public class ProductController extends BaseController {
 
     @GetMapping("/products/{id}")
     public ResponseEntity<Object> getById(@PathVariable("id") Integer id) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception get product by id {}", id);
             Product product = productService.getById(id);
@@ -93,7 +92,7 @@ public class ProductController extends BaseController {
 
     @PostMapping("/products/update")
     public ResponseEntity<Object> update(@RequestBody Product req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception update product req {}", req);
             productService.update(req);
@@ -117,7 +116,7 @@ public class ProductController extends BaseController {
 
     @PostMapping("/products/delete")
     public ResponseEntity<Object> delete(@RequestBody Product req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception delete product req {}", req);
             productService.delete(req);
@@ -141,10 +140,10 @@ public class ProductController extends BaseController {
 
     @GetMapping("/products/units/{productId}")
     public ResponseEntity<Object> getAllProductUnitsByProductId(@PathVariable("productId") Integer productId) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             List<ProductUnit> list = productService.getProductUnitsByProductId(productId);
-            response = new MessageResponse();
+            response = new MessageDataResponse();
             response.getDataSuccess(list);
         } catch (AppException e) {
             log.error("Error while get all product units", e);

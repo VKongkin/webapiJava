@@ -2,7 +2,7 @@ package kongkin.bbu.edu.webapi.controllers;
 
 import kongkin.bbu.edu.webapi.exceptions.AppException;
 import kongkin.bbu.edu.webapi.models.Category;
-import kongkin.bbu.edu.webapi.models.response.MessageResponse;
+import kongkin.bbu.edu.webapi.models.response.MessageDataResponse;
 import kongkin.bbu.edu.webapi.models.services.CategoryService;
 import kongkin.bbu.edu.webapi.models.services.CategoryServiceLang;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/api")
+//@RequestMapping("/api1")
 public class CategoryController extends BaseController{
     private final CategoryService categoryService;
     private final CategoryServiceLang categoryServiceLang;
@@ -34,10 +34,10 @@ public class CategoryController extends BaseController{
     }
     @GetMapping("/categories")
     public ResponseEntity<Object> getAll() {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             List<Category> list = categoryService.getAll();
-            response = new MessageResponse();
+            response = new MessageDataResponse();
             response.getDataSuccess(list);
         } catch (AppException e) {
             log.error("Error while get all ", e);
@@ -56,7 +56,7 @@ public class CategoryController extends BaseController{
 
     @PostMapping("/categories/create")
     public ResponseEntity<Object> create(@RequestBody Category req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception create category req {}", req);
             categoryService.create(req);
@@ -80,7 +80,7 @@ public class CategoryController extends BaseController{
 
     @GetMapping("/categories/{id}")
     public ResponseEntity<Object> getById(@PathVariable("id") Integer id) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception get category by id {}", id);
             Category category = categoryService.getById(id);
@@ -101,7 +101,7 @@ public class CategoryController extends BaseController{
 
     @PostMapping("/categories/update")
     public ResponseEntity<Object> update(@RequestBody Category req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception update unit type by id {}", req);
             categoryService.update(req);
@@ -125,7 +125,7 @@ public class CategoryController extends BaseController{
 
     @PostMapping("/categories/delete")
     public ResponseEntity<Object> delete(@RequestBody Category req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Interception update unit type by id {}", req);
             categoryService.delete(req);

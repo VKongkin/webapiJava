@@ -12,7 +12,6 @@ public class WebApiApplication {
 	public String greeting(){
 		return "Welcome to web api";
 	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(WebApiApplication.class, args);
 	}

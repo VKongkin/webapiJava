@@ -2,9 +2,8 @@ package kongkin.bbu.edu.webapi.controllers;
 
 import kongkin.bbu.edu.webapi.exceptions.AppException;
 import kongkin.bbu.edu.webapi.models.Order;
-import kongkin.bbu.edu.webapi.models.Product;
 import kongkin.bbu.edu.webapi.models.request.OrderRequest;
-import kongkin.bbu.edu.webapi.models.response.MessageResponse;
+import kongkin.bbu.edu.webapi.models.response.MessageDataResponse;
 import kongkin.bbu.edu.webapi.models.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +25,10 @@ public class OrderController extends BaseController{
 
     @GetMapping("/orders")
     public ResponseEntity<Object> getAll() {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             List<Order> list = orderService.getAll();
-            response = new MessageResponse();
+            response = new MessageDataResponse();
             response.getDataSuccess(list);
         } catch (AppException e) {
             log.error("Error while get all orders", e);
@@ -48,7 +47,7 @@ public class OrderController extends BaseController{
 
     @GetMapping("/orders/items/{orderId}")
     public ResponseEntity<Object> getAllOrderItemsByOrderId(@PathVariable("orderId") Integer orderId) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Intercept get all order items");
             var list = orderService.getOrderItemByOrderId(orderId);
@@ -70,7 +69,7 @@ public class OrderController extends BaseController{
 
     @PostMapping("/orders/create")
     public ResponseEntity<Object> createOrder(@RequestBody OrderRequest req) {
-        response = new MessageResponse();
+        response = new MessageDataResponse();
         try {
             log.info("Intercept create order {}", req);
             orderService.createOrder(req);

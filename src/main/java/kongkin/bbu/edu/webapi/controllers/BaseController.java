@@ -1,8 +1,8 @@
 package kongkin.bbu.edu.webapi.controllers;
 
-import kongkin.bbu.edu.webapi.models.response.MessageResponse;
+import kongkin.bbu.edu.webapi.models.response.MessageDataResponse;
 
 public class BaseController {
-    protected MessageResponse response;
+    protected MessageDataResponse response;
 
 }
